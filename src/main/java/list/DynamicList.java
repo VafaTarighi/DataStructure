@@ -11,14 +11,26 @@ public class DynamicList<E> {
     private E[] array;
 
     // -------------------- Constructors --------------------
+
+    /**
+     * Constructor to create an empty {@code DynamicList}.
+     */
     public DynamicList() {
         array = (E[]) new Object[0];
     }
 
+    /**
+     * Constructor that creates an empty {@code DynamicList} with the specified initial capacity.
+     * @param initialCapacity the initial capacity of the {@code DynamicList}
+     */
     public DynamicList(int initialCapacity) {
         array = (E[]) new Object[initialCapacity];
     }
 
+    /**
+     * Constructor that creates a {@code DynamicList} from the specified array of data.
+     * @param arr array of data
+     */
     public DynamicList(E[] arr) {
         array = (E[]) new Object[arr.length];
         size = arr.length;
@@ -27,17 +39,33 @@ public class DynamicList<E> {
 
 
     // --------------- access methods --------------
+
+    /**
+     * Returns the element at the specified position in this {@code DynamicList}.
+     * @param index index of the element in the {@code DynamicList}
+     * @return the element
+     */
     public E get(int index) {
         validateIndex(index);
 
         return array[index];
     }
 
+    /**
+     * Returns the current size of the {@code DynamicList}.
+     * @return current size of the list
+     */
     public int size() {
         return size;
     }
 
     // --------------- initialization methods -----------------
+
+    /**
+     * Adds the element {@code E obj} to the end of the list.
+     * @param obj element to be added to the list
+     * @return {@code this} list
+     */
     public DynamicList<E> add(E obj) {
         ensureCapacity(size + 1);
 
@@ -46,12 +74,23 @@ public class DynamicList<E> {
         return this;
     }
 
+    /**
+     * Replaces the element at the specified position in this {@code DynamicList} with the specified element.
+     * @param index index of the element to be replaced
+     * @param obj new value of the specified position in the list
+     */
     public void set(int index, E obj) {
         validateIndex(index);
 
         array[index] = obj;
     }
 
+    /**
+     * Inserts an element to the specified position in the list.
+     * @param index position of list to insert the specified element
+     * @param obj the element to be inserted
+     * @return {@code this} list
+     */
     public DynamicList<E> insert(int index, E obj) {
 
         if (index == size) {
@@ -67,6 +106,11 @@ public class DynamicList<E> {
         return this;
     }
 
+    /**
+     * Removes the element at the specified position in the {@code DynamicList}.
+     * @param index index of the element to be removed in the list
+     * @return the removed element
+     */
     public E remove(int index) {
         validateIndex(index);
 
@@ -80,28 +124,53 @@ public class DynamicList<E> {
         return removed;
     }
 
+    /**
+     * Removes the first element of the list and sifts remaining element to left left.
+     * @return first element of list that removed
+     */
     public E shift() {
         return this.remove(0);
     }
 
+    /**
+     * Inserts the specified element to the beginning of the list.
+     * @param obj element to be inserted
+     * @return {@code this} list
+     */
     public DynamicList<E> unshift(E obj) {
         return this.insert(0, obj);
     }
 
+    /**
+     * Removes the last element of the list and returns it
+     * @return last element of the list that been removed
+     */
     public E pop() {
         return this.remove(this.size - 1);
     }
 
+    /**
+     * Adds the element {@code E obj} to the end of the list.
+     * @param obj element to be added to the list
+     * @return {@code this} list
+     */
     public DynamicList<E> push(E obj) {
         return this.add(obj);
     }
 
+    /**
+     * Removes all of the elements from this list.
+     * The list will be empty after this call return
+     */
     public void clean() {
         array = (E[]) new Object[0];
         capacity = 0;
         size = 0;
     }
 
+    /**
+     * Trims the list to its current size
+     */
     public void trim() {
         array = Arrays.copyOf(array, size);
         capacity = size;
@@ -160,6 +229,13 @@ public class DynamicList<E> {
         }));
     }
 
+    /**
+     * Returns a new sorted {@code DynamicList} that contains all of elements
+     * inside {@code this} and {@code other} using specified comparator.
+     * @param other other list to be merged with {@code this} list
+     * @param cmp comparator to sort the resulting list
+     * @return new sorted list containing elements of two specified lists
+     */
     public DynamicList<E> merge(DynamicList<E> other, Comparator<? super E> cmp) {
         DynamicList<E> result = this.append(other);
         result.sort(cmp);
@@ -167,6 +243,13 @@ public class DynamicList<E> {
     }
 
     // ----------------- utility methods -------------------
+
+    /**
+     * Ensures current capacity of the list before adding new elements to the list.
+     * Increases capacity of the inner array with growth factor of 3/2 if needed.
+     * (For internal usage)
+     * @param nextSize minimum capacity needed for adding new element to the list
+     */
     private void ensureCapacity(int nextSize)   {
         if (capacity >= nextSize) return;
 
@@ -181,11 +264,19 @@ public class DynamicList<E> {
 
     }
 
+    /**
+     * for collapsing the inner array to it's currentSize * 4/3
+     * (for internal usage)
+     */
     private void ensureTrim() {
         if (capacity >= size * 2)
             System.arraycopy(array, 0, array = (E[]) new Object[capacity = size * 4 / 3], 0, size);
     }
 
+    /**
+     * validates index of the element of the list to be accessed.
+     * @param index position of the list to be accessed
+     */
     private void validateIndex(int index) {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("index: " + index + " for size: " + size);
