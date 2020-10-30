@@ -5,9 +5,15 @@ import java.util.Comparator;
 public class SortedList<E> {
 
     private final Comparator<E> cmp;
-    private final DynamicList<E> list = new DynamicList<>();
+    private DynamicList<E> list;
 
     public SortedList(Comparator<E> cmp) {
+        this.list = new DynamicList<>();
+        this.cmp = cmp;
+    }
+
+    private SortedList(DynamicList<E> list, Comparator<E> cmp) {
+        this.list = list;
         this.cmp = cmp;
     }
 
@@ -24,6 +30,10 @@ public class SortedList<E> {
 
     public E remove(int index) {
         return list.remove(index);
+    }
+
+    public SortedList<E> merge(SortedList<E> other) {
+        return new SortedList<>(list.merge(other.list, cmp), cmp);
     }
 
     public String toString() {
