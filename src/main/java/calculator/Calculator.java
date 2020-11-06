@@ -1,4 +1,4 @@
-package calculatorCLI;
+package calculator;
 
 import java.io.IOException;
 import java.math.BigInteger;
