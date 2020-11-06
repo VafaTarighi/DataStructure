@@ -1,7 +1,5 @@
 package list;
 
-import java.util.LinkedList;
-
 public class SinglyLinkedList<E> {
     private static class Node<E> {
         E value;
