@@ -59,6 +59,15 @@ public class DynamicList<E> {
         return size;
     }
 
+    /**
+     * Returns {@code true} if this list contains no elements.
+     *
+     * @return {@code true} if this list contains no elements
+     */
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
     // --------------- initialization methods -----------------
 
     /**
@@ -285,7 +294,7 @@ public class DynamicList<E> {
 
     @Override
     public String toString() {
-        return "DynamicList" +
+        return "List" +
                  Arrays.toString(Arrays.copyOf(array, size));
     }
 }

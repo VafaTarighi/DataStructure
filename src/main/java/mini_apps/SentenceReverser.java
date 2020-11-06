@@ -27,7 +27,7 @@ public class SentenceReverser {
         }
     }
 
-    private static String reverseChars(String input) {
+    private static String reverseChars(String input)    {
 
         DoublyLinkedList<Character> dll = new DoublyLinkedList<>();
         StringBuilder reversed = new StringBuilder(input.length());

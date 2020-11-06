@@ -5,6 +5,13 @@ import queue.LinkedQueue;
 
 import java.util.Arrays;
 
+/**
+ * Program that uses Path-Finding BFS & DFS algorithms
+ * to solve a maze problem by giving a matrix(char[][])
+ * map of roads ( represented by '0' character)
+ * and barriers( represented by '1' character)
+ */
+
 public class MouseAndCheese {
 
     private static class Node {
@@ -182,10 +189,10 @@ public class MouseAndCheese {
 
     public static void main(String[] args) {
         MouseAndCheese mac = new MouseAndCheese(myMap);
-        Node mouse = new Node(6, 4, 0, null);
+        Node mouse = new Node(0, 0, 0, null);
         String path;
 
-        Node cheese = mac.bfsSearch(mouse, 6, 11);
+        Node cheese = mac.bfsSearch(mouse, 5, 6);
         System.out.println("BFS:");
         if (cheese != null) {
             path = mac.getPath(cheese);
@@ -193,7 +200,7 @@ public class MouseAndCheese {
         } else
             System.out.println("  Path: N/A");
 
-        cheese = mac.dfsSearch(mouse, 6, 11);
+        cheese = mac.dfsSearch(mouse, 5, 6);
         System.out.println("DFS:");
         if (cheese != null) {
             path = mac.getPath(cheese);

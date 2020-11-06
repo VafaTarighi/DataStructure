@@ -1,9 +1,12 @@
 package list;
 
-import java.util.Deque;
-import java.util.LinkedList;
+/**
+ * Doubly Linked List Implementation
+ *
+ */
 
 public class DoublyLinkedList<E> {
+
     private static class Node<E> {
         E data;
         Node<E> next;
@@ -14,6 +17,9 @@ public class DoublyLinkedList<E> {
     private final Node<E> trailer;
     private int size;
 
+    /**
+     * Public Constructor that creates an empty list.
+     */
     public DoublyLinkedList() {
         header = new Node<>();
         trailer = new Node<>();
@@ -28,22 +34,47 @@ public class DoublyLinkedList<E> {
         trailer.next = null;
     }
 
+    /**
+     * Returns current size of this list
+     *
+     * @return size of this list
+     */
     public int size() {
         return size;
     }
 
+    /**
+     * Returns {@code true} if this list contains no elements.
+     *
+     * @return {@code true} if this list contains no elements
+     */
     public boolean isEmpty() {
         return size == 0;
     }
 
+    /**
+     * Returns fist element of this list or null if the list is empty.
+     *
+     * @return first element in this list or null if the list is empty
+     */
     public E first() {
         return header.next.data;
     }
 
+    /**
+     * Returns last element of this list or null if the list is empty.
+     *
+     * @return last element of this list or null if the list is empty
+     */
     public E last() {
         return trailer.prev.data;
     }
 
+    /**
+     * Inserts the specified element at the begging of the list.
+     *
+     * @param e the element to add
+     */
     public void addFirst(E e) {
         Node<E> node = new Node<>();
         node.data = e;
@@ -54,6 +85,11 @@ public class DoublyLinkedList<E> {
         size++;
     }
 
+    /**
+     * Inserts the specified element at the end of the list.
+     *
+     * @param e the element to add
+     */
     public void addLast(E e) {
         Node<E> node = new Node<>();
         node.data = e;
@@ -64,6 +100,11 @@ public class DoublyLinkedList<E> {
         size++;
     }
 
+    /**
+     * Removes and returns the element at the begging of this list.
+     *
+     * @return the element at the begging of this list
+     */
     public E removeFirst() {
         if (isEmpty())
             return null;
@@ -76,6 +117,11 @@ public class DoublyLinkedList<E> {
         return e;
     }
 
+    /**
+     * Removes and returns the element at the end of this list.
+     *
+     * @return the element at the end of this list
+     */
     public E removeLast() {
         if (isEmpty())
             return null;
@@ -88,6 +134,11 @@ public class DoublyLinkedList<E> {
         return e;
     }
 
+    /**
+     * An implementation of {@code toString()} method for DoublyLinkedList.
+     *
+     * @return String representation of this list
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("DoublyLinkedList { ");
