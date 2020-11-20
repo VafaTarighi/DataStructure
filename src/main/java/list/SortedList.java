@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 public class SortedList<E> {
 
-    private final Comparator<E> cmp;
+    private final Comparator<E> cmp; // exercise
     private DynamicList<E> list;
 
     /**
