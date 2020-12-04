@@ -79,4 +79,8 @@ public class QSort {
         System.arraycopy(right, 0, array, pivotIndex, right.length);
 
     }
+
+    public static void main(String[] args) {
+        sort(new int[] {9,8,7,6,5,4,3,2,1});
+    }
 }

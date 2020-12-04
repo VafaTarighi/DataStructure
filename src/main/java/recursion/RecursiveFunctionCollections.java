@@ -21,6 +21,14 @@ public class RecursiveFunctionCollections {
 
     }
 
+    public static int factorial1(int a) { // n! = n*(n-1)*(n-2)*...*2*1 -> n! = n*(n-1)! 1!=1
+        //Base Case
+        if (a == 1)
+            return 1;
+        else
+            return a * factorial1(a-1);
+    }
+
 
     public static void printRuler(int len, int mtl) {
         System.out.println("-".repeat(mtl) + " 0");
@@ -142,7 +150,7 @@ public class RecursiveFunctionCollections {
 
     public static void main(String[] args) {
 
-        printRuler(5, 3);
+        printRuler(1, 6);
 
     }
 }
