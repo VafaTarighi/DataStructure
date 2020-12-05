@@ -1,4 +1,4 @@
-package recursion;
+package mini_projects;
 
 import java.io.BufferedReader;
 import java.io.IOException;
