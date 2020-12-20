@@ -9,6 +9,7 @@ public class DynamicList<E> {
     private int size = 0;
     private int capacity = 0;
     private E[] array;
+    private boolean AUTO_TRIM = false;
 
     // -------------------- Constructors --------------------
 
@@ -68,6 +69,15 @@ public class DynamicList<E> {
         return size == 0;
     }
 
+    public boolean contains(E e) {
+        for (int i = 0; i < size; i++) {
+            if (array[i].equals(e))
+                return true;
+        }
+
+        return false;
+    }
+
     // --------------- initialization methods -----------------
 
     /**
@@ -81,6 +91,12 @@ public class DynamicList<E> {
         array[size++] = obj;
 
         return this;
+    }
+
+    public void addAll(DynamicList<E> other) {
+        for (int i = 0; i < other.size(); i++) {
+            this.add(other.get(i));
+        }
     }
 
     /**
@@ -125,7 +141,9 @@ public class DynamicList<E> {
 
         E removed = array[index];
 
-        ensureTrim();
+        if (AUTO_TRIM)
+            ensureTrim();
+
         System.arraycopy(array, index + 1, array, index, size - index - 1);
 
         size--;
@@ -154,7 +172,7 @@ public class DynamicList<E> {
      * Removes the last element of the list and returns it
      * @return last element of the list that been removed
      */
-    public E pop() {
+    public E removeLast() {
         return this.remove(this.size - 1);
     }
 
@@ -163,7 +181,7 @@ public class DynamicList<E> {
      * @param obj element to be added to the list
      * @return {@code this} list
      */
-    public DynamicList<E> push(E obj) {
+    public DynamicList<E> addLast(E obj) {
         return this.add(obj);
     }
 
@@ -175,6 +193,15 @@ public class DynamicList<E> {
         array = (E[]) new Object[0];
         capacity = 0;
         size = 0;
+    }
+
+    public void reset() {
+        Arrays.fill(array, 0, size, null);
+        size = 0;
+    }
+
+    public void setAutoTrim(boolean mode) {
+        AUTO_TRIM = mode;
     }
 
     /**
