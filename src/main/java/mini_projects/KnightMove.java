@@ -176,17 +176,17 @@ public class KnightMove {
             return "path not found.";
 
         while (target != null) {
-            path.append(target.getValue()).append(":");
+            path.append(target.getValue()).append("->");
             target = target.getParent();
         }
 
-        String[] nodes = path.substring(0, path.length()-1).split(":");
+        String[] nodes = path.substring(0, path.length()-2).split("->");
         path = new StringBuilder();
         for (int i = nodes.length - 1; i >= 0; i--) {
-            path.append(nodes[i]).append(":");
+            path.append(nodes[i]).append("->");
         }
 
-        return path.substring(0, path.length()-1);
+        return path.substring(0, path.length()-2);
 
     }
 
@@ -235,22 +235,23 @@ public class KnightMove {
 
 
         /*
-         * Change (boardScale{fistArg}  knightPos{secondArg}  maxDepth{thirdArg})
+         * Change (boardScale{firstArg}  knightPos{secondArg}  maxDepth{thirdArg})
          * to modify board start point, scale and maximum depth of path tree
+         * higher depths can lead to OutOfMemoryError: Java heap space
          */
         KnightMove km = new KnightMove(8, "a1", 8);
 
         /*
          * Change getPath()'s parameter to change target position to find it's shortest path
          */
-        String path = km.getPath("g7");
+        String path = km.getPath("h8");
 
 
         end = System.currentTimeMillis();
-        System.out.println(path);
-        System.out.println("path length: " + (path.split(":").length-1));
+        System.out.println("path: " + path);
 
-        System.out.println("total node count: " + km.getTotalPossibleMoves());
-        System.out.println("exe time: " + (end - start));
+        System.out.println("path length: " + (path.split("->").length-1));
+        System.out.println("tree size: " + km.getTotalPossibleMoves());
+        System.out.println("exe time: " + (end - start) + "ms");
     }
 }
