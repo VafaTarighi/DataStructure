@@ -1,5 +1,7 @@
 package list;
 
+import java.util.Iterator;
+
 /**
  * Singly Linked List Implementation
  *
@@ -102,6 +104,24 @@ public class SinglyLinkedList<E> {
         }
 
         return sb.append(" }").toString();
+    }
+
+    public Iterator<E> getIterator() {
+        return new Iterator<>() {
+            private Node<E> next = head;
+
+            @Override
+            public boolean hasNext() {
+                return next != null;
+            }
+
+            @Override
+            public E next() {
+                Node<E> current = next;
+                next = current.next;
+                return current.value;
+            }
+        };
     }
 
     /**
