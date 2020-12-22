@@ -232,8 +232,7 @@ public class KnightMove {
         long start, end;
 
         start = System.currentTimeMillis();
-
-
+        
         /*
          * Change (boardScale{firstArg}  knightPos{secondArg}  maxDepth{thirdArg})
          * to modify board start point, scale and maximum depth of path tree
@@ -246,10 +245,9 @@ public class KnightMove {
          */
         String path = km.getPath("h8");
 
-
         end = System.currentTimeMillis();
-        System.out.println("path: " + path);
 
+        System.out.println("path: " + path);
         System.out.println("path length: " + (path.split("->").length-1));
         System.out.println("tree size: " + km.getTotalPossibleMoves());
         System.out.println("exe time: " + (end - start) + "ms");
