@@ -189,10 +189,10 @@ public class MouseAndCheese {
 
     public static void main(String[] args) {
         MouseAndCheese mac = new MouseAndCheese(myMap);
-        Node mouse = new Node(0, 0, 0, null);
+        Node mouse = new Node(6, 0, 0, null);
         String path;
 
-        Node cheese = mac.bfsSearch(mouse, 5, 6);
+        Node cheese = mac.bfsSearch(mouse, 0, 3);
         System.out.println("BFS:");
         if (cheese != null) {
             path = mac.getPath(cheese);

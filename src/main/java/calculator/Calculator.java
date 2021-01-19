@@ -52,7 +52,7 @@ public class Calculator {
         return (BigInteger) postfixInput.get(0);
     }
 
-    private static boolean validateExpression(String input) {
+    public static boolean validateExpression(String input) {
         return checkParentheses(input) && checkInvalidCases(input);
 
     }
